@@ -93,14 +93,11 @@ export default function CreateVoucher() {
         department: form.department.trim(),
         expenseTitle: form.expenseTitle.trim(),
         expenseCategory: form.expenseCategory,
-        description: form.description ? form.description.trim() : "",
+        description: form.description.trim(),
         amount: parsedAmount.toFixed(2),
-        // fallback snake_case keys just in case
-        voucher_date: form.voucherDate,
-        expense_date: form.expenseDate,
-        expense_title: form.expenseTitle.trim(),
-        expense_category: form.expenseCategory,
       };
+
+      console.log("Voucher request payload:", payload);
 
       await apiRequest("/vouchers", {
         method: "POST",
@@ -109,7 +106,9 @@ export default function CreateVoucher() {
 
       navigate("/employee");
     } catch (err) {
-      setError(err.message || "Unable to save the voucher. Please check your entries.");
+      setError(
+        err.message || "Unable to save the voucher. Please check your entries.",
+      );
     } finally {
       setSaving(false);
     }
@@ -147,7 +146,8 @@ export default function CreateVoucher() {
                     Expense Claim Details
                   </h2>
                   <p className="text-xs text-slate-500">
-                    All drafts can be reviewed and digitally signed before sending to the Director.
+                    All drafts can be reviewed and digitally signed before
+                    sending to the Director.
                   </p>
                 </div>
               </div>
@@ -178,7 +178,10 @@ export default function CreateVoucher() {
                         key={cat.name}
                         type="button"
                         onClick={() =>
-                          setForm((prev) => ({ ...prev, expenseCategory: cat.name }))
+                          setForm((prev) => ({
+                            ...prev,
+                            expenseCategory: cat.name,
+                          }))
                         }
                         className={`flex flex-col items-center justify-center p-3 rounded-xl border text-center transition-all ${
                           isSelected
@@ -358,14 +361,12 @@ export default function CreateVoucher() {
                     Claim Amount
                   </span>
                   <p className="text-3xl font-bold font-mono text-emerald-400 mt-1">
-                    {form.amount ? (
-                      new Intl.NumberFormat("en-IN", {
-                        style: "currency",
-                        currency: "INR",
-                      }).format(Number(form.amount))
-                    ) : (
-                      "₹0.00"
-                    )}
+                    {form.amount
+                      ? new Intl.NumberFormat("en-IN", {
+                          style: "currency",
+                          currency: "INR",
+                        }).format(Number(form.amount))
+                      : "₹0.00"}
                   </p>
                 </div>
 
@@ -401,7 +402,10 @@ export default function CreateVoucher() {
                 </div>
 
                 <div className="mt-5 rounded-xl bg-slate-900 border border-slate-800 p-3 text-[11px] text-slate-400">
-                  <span className="text-emerald-400 font-semibold">Note:</span> Saving creates an official draft voucher in your employee ledger. You will be able to digitally sign it before it reaches the Director.
+                  <span className="text-emerald-400 font-semibold">Note:</span>{" "}
+                  Saving creates an official draft voucher in your employee
+                  ledger. You will be able to digitally sign it before it
+                  reaches the Director.
                 </div>
               </div>
             </div>
