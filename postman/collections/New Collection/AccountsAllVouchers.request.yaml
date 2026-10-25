@@ -1,0 +1,9 @@
+$kind: http-request
+description: ""
+url: http://localhost:5000/api/accounts/vouchers
+method: GET
+auth:
+  type: bearer
+  credentials:
+    token: "{{json_web_token_0fgs}}"
+order: 9000

@@ -1,0 +1,30 @@
+$kind: http-request
+description: ""
+url: http://localhost:5000/api/vouchers
+method: POST
+body:
+  type: json
+  content: "\r
+
+    {\r
+
+    \  \"expenseDate\": \"2026-10-24\",\r
+
+    \  \"department\": \"IT\",\r
+
+    \  \"expenseTitle\": \"Laptop accessories\",\r
+
+    \  \"expenseCategory\": \"Equipment\",\r
+
+    \  \"description\": \"Keyboard and mouse for office use\",\r
+
+    \  \"amount\": \"2500.00\"\r
+
+    }\r
+
+    \  "
+auth:
+  type: bearer
+  credentials:
+    token: "{{json_web_token_032q}}"
+order: 3000

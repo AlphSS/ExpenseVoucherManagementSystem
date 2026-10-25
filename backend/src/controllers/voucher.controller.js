@@ -82,6 +82,10 @@ export async function createVoucher(req, res, next) {
         message: "Amount must have at most two decimal places.",
       });
     }
+    console.log("Submitting voucher:", {
+      ...form,
+      amount: Number(form.amount),
+    });
 
     const voucher = await createVoucherService(req.user.id, {
       expenseDate,

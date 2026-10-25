@@ -1,4 +1,5 @@
 import express from "express";
+import cors from "cors";
 import multer from "multer";
 import "dotenv/config";
 import authRoutes from "./routes/auth.routes.js";
@@ -6,15 +7,24 @@ import { authenticate } from "./middleware/authenticate.js";
 import { authorizeRole } from "./middleware/authorizeRole.js";
 import voucherRoutes from "./routes/voucher.routes.js";
 import directorRoutes from "./routes/director.routes.js";
+import accountsRoutes from "./routes/accounts.routes.js";
 
 const app = express();
 
+app.use(
+  cors({
+    origin: "http://localhost:5173",
+    methods: ["GET", "POST", "PUT", "PATCH", "DELETE", "OPTIONS"],
+    allowedHeaders: ["Content-Type", "Authorization"],
+  }),
+);
 app.use(express.json({ limit: "1mb" }));
 
 // Public route
 app.use("/api/auth", authRoutes);
 app.use("/api/vouchers", voucherRoutes);
 app.use("/api/director", directorRoutes);
+app.use("/api/accounts", accountsRoutes);
 
 app.use((err, req, res, next) => {
   if (res.headersSent) {

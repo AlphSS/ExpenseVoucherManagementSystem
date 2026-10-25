@@ -1,0 +1,26 @@
+$kind: http-request
+description: ""
+url: http://localhost:5000/api/vouchers/1
+method: DELETE
+body:
+  type: json
+  content: "{\r
+
+    \  \"expenseDate\": \"2026-10-24\",\r
+
+    \  \"department\": \"IT\",\r
+
+    \  \"expenseTitle\": \"Updated laptop accessories\",\r
+
+    \  \"expenseCategory\": \"Equipment\",\r
+
+    \  \"description\": \"Updated keyboard and mouse purchase\",\r
+
+    \  \"amount\": \"3200.00\"\r
+
+    }"
+auth:
+  type: bearer
+  credentials:
+    token: "{{json_web_token_032q}}"
+order: 2000

@@ -1,0 +1,23 @@
+$kind: http-request
+description: ""
+url: http://localhost:5000/api/vouchers/2/signature
+method: POST
+body:
+  type: formdata
+  content:
+    - type: file
+      key: signature
+      src: []
+      description: ""
+      disabled: true
+    - type: file
+      key: signature
+      src:
+        - /C:/Users/Neeraj Shah/Pictures/code-snapshot.png
+      description: ""
+      disabled: false
+auth:
+  type: bearer
+  credentials:
+    token: "{{json_web_token_1e9b}}"
+order: 1000
