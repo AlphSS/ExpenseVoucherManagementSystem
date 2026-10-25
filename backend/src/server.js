@@ -5,6 +5,7 @@ import authRoutes from "./routes/auth.routes.js";
 import { authenticate } from "./middleware/authenticate.js";
 import { authorizeRole } from "./middleware/authorizeRole.js";
 import voucherRoutes from "./routes/voucher.routes.js";
+import directorRoutes from "./routes/director.routes.js";
 
 const app = express();
 
@@ -13,6 +14,7 @@ app.use(express.json({ limit: "1mb" }));
 // Public route
 app.use("/api/auth", authRoutes);
 app.use("/api/vouchers", voucherRoutes);
+app.use("/api/director", directorRoutes);
 
 app.use((err, req, res, next) => {
   if (res.headersSent) {
