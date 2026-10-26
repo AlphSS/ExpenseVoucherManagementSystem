@@ -61,7 +61,7 @@ Use the following test account to explore the employee interface and test vouche
 ### 1. Clone the Repository
 
 ```bash
-git clone <https://github.com/AlphSS/ExpenseVoucherManagementSystem.git>
+git clone https://github.com/AlphSS/ExpenseVoucherManagementSystem.git
 cd ExpenseVoucherManagementSystem
 ```
 
