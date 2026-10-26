@@ -3,10 +3,6 @@ import { UserCheck, Shield, Receipt, ArrowRight, Sparkles } from "lucide-react";
 import { useNavigate } from "react-router-dom";
 import { apiRequest } from "../../services/api";
 
-if (import.meta.env.VITE_ENABLE_DEMO_LOGIN !== "true") {
-  return null;
-}
-
 const accounts = [
   {
     role: "EMPLOYEE",
@@ -44,6 +40,10 @@ export default function DevQuickLogin() {
   const navigate = useNavigate();
   const [loadingRole, setLoadingRole] = useState(null);
   const [error, setError] = useState("");
+  
+  if (import.meta.env.VITE_ENABLE_DEMO_LOGIN !== "true") {
+    return null;
+  }
 
   async function handleQuickLogin(role) {
     if (loadingRole) return;
