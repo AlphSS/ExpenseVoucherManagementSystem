@@ -1,4 +1,5 @@
 import { loginUser } from "../services/auth.service.js";
+import { demoLogin } from "../services/auth.service.js";
 
 export async function login(req, res, next) {
   try {
@@ -27,6 +28,39 @@ export async function login(req, res, next) {
 
     return res.status(200).json({
       message: "Login successful.",
+      token: result.token,
+      user: result.user,
+    });
+  } catch (error) {
+    next(error);
+  }
+}
+
+
+
+export async function demoLoginController(req, res, next) {
+  try {
+    const { role } = req.body ?? {};
+
+    if (
+      typeof role !== "string" ||
+      !["EMPLOYEE", "DIRECTOR", "ACCOUNTS"].includes(role)
+    ) {
+      return res.status(400).json({
+        message: "A valid demo role is required.",
+      });
+    }
+
+    const result = await demoLogin(role);
+
+    if (!result) {
+      return res.status(401).json({
+        message: "Demo account is unavailable.",
+      });
+    }
+
+    return res.status(200).json({
+      message: "Demo login successful.",
       token: result.token,
       user: result.user,
     });

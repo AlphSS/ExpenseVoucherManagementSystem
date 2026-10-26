@@ -276,7 +276,7 @@ export default function Login() {
           </form>
 
           {/* Quick Login for Dev Personas */}
-          <DevQuickLogin onLogin={handleLogin} />
+          <DevQuickLogin />
 
           <p className="mt-8 text-center text-xs text-slate-400">
             Internal Authorized System. All interactions are monitored and audited.
